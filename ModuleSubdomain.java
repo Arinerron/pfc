@@ -12,7 +12,7 @@ import org.apache.http.*;
 import org.apache.http.client.entity.*;
 import java.text.Collator;
 
-public class Main extends Module {
+public class ModuleSubdomain extends Module {
     public static final String USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36";
 
     boolean run = true;
