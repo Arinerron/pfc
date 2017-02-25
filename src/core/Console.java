@@ -10,9 +10,14 @@ public class Console {
     public Scanner scanner = null;
     public static HashMap<String, Module> map = new HashMap<>();
     public static HashMap<String, Module> modules = new HashMap<>();
+    public static final String banner = "    ##                                                                    ##\r\n  ############################################################################\r\n    ##                    ______    _______   ______                      ##\r\n    ##                    |   _  \\  |   ____| /      |                    ##\r\n    ##                    |  |_)  | |  |__   |  ,----'                    ##\r\n    ##                    |   ___/  |   __|  |  |                         ##\r\n    ##                    |  |      |  |     |  `----.                    ##\r\n    ##                    | _|      |__|      \\______|                    ##\r\n    ##                                                                    ##\r\n    ##                         Author: Arinerron                          ##\r\n    ##                           Version: 1.0                             ##\r\n  ############################################################################\r\n    ##                                                                    ##\r\n";
 
     // new Console instance
     public Console(String[] args) {
+        //print banner
+        System.out.println(banner);
+
+        // init scanner
         try {
             this.scanner = new Scanner(System.in);
         } catch(Exception e) {

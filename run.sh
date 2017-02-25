@@ -9,6 +9,7 @@ javac -d ../bin -cp .:modules/*.java:modules/:modules/*:$(echo ../lib/*.jar | tr
 
 cd ../bin
 
+clear;
 java -cp .:$(echo ../lib/*.jar | tr ' ' ':'):$(echo */*.class | tr ' ' ':') Main
 
 cd ..
