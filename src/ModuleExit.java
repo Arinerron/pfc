@@ -5,7 +5,7 @@ public class ModuleExit extends Module {
 
     public ModuleExit() {
         super();
-        register("exit", "bye", "kys", "leave", "goodbye", "cya");
+        register("exit", "bye", "kys", "leave", "goodbye", "cya", "x");
         Runtime.getRuntime().addShutdownHook(new Thread() {
             public void run() {
                 if(!me)
