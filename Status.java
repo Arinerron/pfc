@@ -8,4 +8,5 @@ public class Status {
     public static final int CLEARLINE = 7;
     public static final int RAW = 8;
     public static final int TCHAR = 9;
+    public static final int HELP = 10;
 }

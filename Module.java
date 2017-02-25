@@ -28,11 +28,23 @@ public class Module {
                 if(liveupdate)
                     report(Status.TCHAR, livestring);
             }
-        }, 200, 200);
+        }, 150, 150);
     }
 
-    public void run() {
+    // this function runs when the command is typed
+    public void run(RunConfiguration config) {}
 
+    // registers a class under different commands
+    public void register(String ix, String... is) {
+        for(String s : is)
+            Console.map.put(s, this);
+        Console.map.put(ix.toLowerCase(), this);
+        Console.modules.put(ix.toLowerCase(), this);
+    }
+
+    // for reporting help messages
+    public void help() {
+        report(Status.HELP, "The default help message");
     }
 
     // reports a user-friendly error message
@@ -69,8 +81,13 @@ public class Module {
             case Status.TCHAR:
                 statustag = "" + tchar;
                 break;
+            case Status.HELP:
+                statustag = "+";
+                break;
         }
 
-        System.out.print("[" + statustag + "] " + (e != null ? e.toString().replaceAll(Pattern.quote("{load}"), "[" + tchar + "]") : "Unknown error. Please report this.") + (status != Status.NOLINE && status != Status.TCHAR ? "\n" : "\r"));
+        boolean color = (status == Status.HELP) || (status == Status.ERROR);
+
+        System.out.print(Color.GREEN + "[" + Color.BLUE + statustag + Color.GREEN + "] " + (color ? Color.RED : Color.RESET) + (e != null ? e.toString().replaceAll(Pattern.quote("{load}"), "[" + tchar + "]") : "Unknown error. Please report this.") + (status != Status.NOLINE && status != Status.TCHAR ? "\n" : "\r") + (color ? Color.RESET : ""));
     }
 }

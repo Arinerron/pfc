@@ -15,16 +15,33 @@ import java.text.Collator;
 public class ModuleSubdomain extends Module {
     public static final String USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36";
 
-    boolean run = true;
+    public boolean run = true;
+
+    public ModuleSubdomain() {
+        super();
+        register("subdomains", "subdomain", "subdomainsearch", "subd", "sd", "sds", "subdoms", "sdomain", "subdom");
+    }
 
     // when module is run
-    public void run() {
-        List<String> list = lookup("chaoswebs.net");
-        java.util.Collections.sort(list, Collator.getInstance());
-        report(Status.CLEARLINE, null);
-        report(Status.INFO, "Subdomains found [" + list.size() + "]:");
-        for(String subdomain : list)
-            report(Status.RAW, subdomain);
+    @Override
+    public void run(RunConfiguration config) {
+        if(config.getArray().length != 1) {
+            List<String> list = lookup(config.getArray()[1]);
+            java.util.Collections.sort(list, Collator.getInstance());
+
+            report(Status.CLEARLINE, null);
+            report(Status.INFO, "Subdomains found [" + list.size() + "]:");
+            for(String subdomain : list)
+                report(Status.RAW, subdomain);
+        } else
+            help();
+    }
+
+    // when help is displayed
+    @Override
+    public void help() {
+        report(Status.HELP, "Scans for subdomains of a given domain");
+        report(Status.HELP, "syntax: subdom <domain>");
     }
 
     // returns a list of subdomains on a given domain
@@ -246,7 +263,12 @@ public class ModuleSubdomain extends Module {
 
         liveupdate = false;
 
-        return subdomains;
+        // Clean up subdomains and remove invalid ones
+        List<String> subdoms = new ArrayList<>();
+        for(String s : subdomains)
+            if(s.contains("." + domain) && !s.contains("*"))
+                subdoms.add(s);
+        return subdoms;
     }
 
     // returns the content of a page fetched via an HTTP GET request
