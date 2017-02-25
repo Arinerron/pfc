@@ -252,7 +252,7 @@ public class ModuleSubdomain extends Module {
     // returns the content of a page fetched via an HTTP GET request
     public String httpGET(HttpClient client, String http) throws Exception {
         HttpGet request = new HttpGet(http);
-        request.setHeader("User-Agent", Main.USER_AGENT);
+        request.setHeader("User-Agent", USER_AGENT);
         HttpResponse response = client.execute(request);
         return EntityUtils.toString(response.getEntity());
    }
@@ -260,7 +260,7 @@ public class ModuleSubdomain extends Module {
     // returns the content of a page fetched via an HTTP GET request
     public String httpGET(HttpClient client, String http, String cookie) throws Exception {
        HttpGet request = new HttpGet(http);
-       request.setHeader("User-Agent", Main.USER_AGENT);
+       request.setHeader("User-Agent", USER_AGENT);
        request.setHeader("Cookie", cookie);
        HttpResponse response = client.execute(request);
        return EntityUtils.toString(response.getEntity());
@@ -270,7 +270,7 @@ public class ModuleSubdomain extends Module {
     public String httpPOST(HttpClient client, String http, String cookie, List<NameValuePair> form) throws Exception {
         UrlEncodedFormEntity entity = new UrlEncodedFormEntity(form, Consts.UTF_8);
         HttpPost request = new HttpPost(http);
-        request.setHeader("User-Agent", Main.USER_AGENT);
+        request.setHeader("User-Agent", USER_AGENT);
         request.setHeader("Cookie", cookie);
         request.setHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
         request.setHeader("Referer", http);
@@ -282,7 +282,7 @@ public class ModuleSubdomain extends Module {
    // returns the cookies of a site fetched via an HTTP GET request
    public List<Cookie> getCookies(HttpClient client, String http) throws Exception {
        HttpGet request = new HttpGet(http);
-       request.setHeader("User-Agent", Main.USER_AGENT);
+       request.setHeader("User-Agent", USER_AGENT);
        HttpClientContext context = HttpClientContext.create();
        HttpResponse response = client.execute(request, context);
        return context.getCookieStore().getCookies();
