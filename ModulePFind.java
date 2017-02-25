@@ -28,7 +28,7 @@ public class ModulePFind extends Module {
 
     public ModulePFind() {
         super();
-        register("pfind", "personfind", "username", "find", "psearch", "pf", "userfind", "uf");
+        register("pfind", "personfind", "username", "find", "psearch", "pf", "userfind", "uf", "profilesearch", "profilefind");
     }
 
     @Override
