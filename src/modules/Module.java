@@ -1,3 +1,7 @@
+package modules;
+
+import core.*;
+
 import java.util.*;
 import java.util.regex.*;
 

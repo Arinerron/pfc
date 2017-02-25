@@ -1,3 +1,7 @@
+package modules;
+
+import core.*;
+
 import java.util.*;
 import java.util.regex.*;
 import java.net.*;
@@ -266,7 +270,7 @@ public class ModuleSubdomain extends Module {
         // Clean up subdomains and remove invalid ones
         List<String> subdoms = new ArrayList<>();
         for(String s : subdomains)
-            if(s.contains("." + domain) && !s.contains("*"))
+            if(s.contains("." + domain) && !s.contains("*") && !s.contains(" ")) // the space part is remove some domains it shouldn't TODO fix
                 subdoms.add(s);
         return subdoms;
     }

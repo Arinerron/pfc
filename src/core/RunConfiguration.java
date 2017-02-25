@@ -1,3 +1,5 @@
+package core;
+
 public interface RunConfiguration {
     public String getCommand();
     public String[] getArray();

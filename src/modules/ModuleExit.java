@@ -1,3 +1,7 @@
+package modules;
+
+import core.*;
+
 import java.util.*;
 
 public class ModuleExit extends Module {
@@ -10,7 +14,7 @@ public class ModuleExit extends Module {
             public void run() {
                 if(!me)
                     report(Status.EMPTY, null);
-                report(Status.INFO, "bye!");
+                report(Status.INFO, Color.GREEN + "bye!");
             }
         });
     }

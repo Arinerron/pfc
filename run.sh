@@ -4,10 +4,10 @@ set -e
 
 cd src
 
-javac -d ../bin -cp .:$(echo ../lib/*.jar | tr ' ' ':'):$(echo *.java | tr ' ' ':') Console.java;
+javac -d ../bin -cp .:$(echo ../lib/*.jar | tr ' ' ':'):$(echo */*.java | tr ' ' ':') Main.java;
 
 cd ../bin
 
-java -cp .:$(echo ../lib/*.jar | tr ' ' ':'):$(echo *.class | tr ' ' ':') Console
+java -cp .:$(echo ../lib/*.jar | tr ' ' ':'):$(echo */*.class | tr ' ' ':') Main
 
 cd ..
