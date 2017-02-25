@@ -21,6 +21,7 @@ public class Console {
         new ModuleHelp();
         new ModuleExit();
         new ModuleSubdomain();
+        new ModulePFind();
 
         while(true) {
             System.out.print(Color.GREEN + "pfc" + Color.WHITE + "-> " + Color.CYAN);

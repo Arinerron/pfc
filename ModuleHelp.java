@@ -3,7 +3,7 @@ import java.util.*;
 public class ModuleHelp extends Module {
     public ModuleHelp() {
         super();
-        register("help", "h", "halp", "hlp", "helpme", "?", "??", "???");
+        register("help", "h", "halp", "hlp", "helpme", "?", "??", "???", "modules", "module", "mods", "mod");
     }
 
     @Override
