@@ -42,8 +42,8 @@ public class ModulePFind extends Module {
                 List<String> list = new ArrayList<>();
                 String urlencoded = URLEncoder.encode(config.getArray()[1], "UTF-8");
 
-                liveupdate = true;
-                livestring = "Searching for online profiles...";
+                Logger.liveupdate = true;
+                Logger.livestring = "Searching for online profiles...";
 
                 for(String url : urllist) {
                     url = url.replaceAll(Pattern.quote("$user$"), urlencoded);
@@ -54,7 +54,7 @@ public class ModulePFind extends Module {
                         list.add(yu.toString());
                 }
 
-                liveupdate = false;
+                Logger.liveupdate = false;
 
                 report(Status.CLEARLINE, null);
                 report(Status.INFO, "Profiles found [" + list.size() + "]:");

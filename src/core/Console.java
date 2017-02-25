@@ -5,6 +5,7 @@ import modules.*;
 import java.util.*;
 import java.util.regex.*;
 import java.io.*;
+import java.math.*;
 
 public class Console {
     public Scanner scanner = null;
@@ -14,7 +15,9 @@ public class Console {
 
     // new Console instance
     public Console(String[] args) {
+        long before = System.currentTimeMillis();
         //print banner
+        Logger.init();
         System.out.println(banner);
 
         // init scanner
@@ -49,31 +52,42 @@ public class Console {
                     e.printStackTrace();
                 }
 
-        new ModuleHelp();
+        long after = System.currentTimeMillis();
+        String r_return = Pattern.quote("&&");
+
+        Logger.report(Status.STATUS, "Loaded [" + modules.size() + "] modules in [" + round((double)(after - before) / 1000, 2) + "] seconds...");
+        Logger.report(Status.STATUS, "Welcome to pfc!");
 
         while(true) {
-            System.out.print(Color.GREEN + "pfc" + Color.WHITE + "-> " + Color.CYAN);
+            System.out.print(Color.GREEN + Color.BOLD + "pfc" + Color.WHITE + "-> " + Color.RESET + Color.CYAN);
 
-            final String line = readLine();
-            final String[] a = line.split(Pattern.quote(" "));
-            final String p = a[0].toLowerCase();
+            final String line1 = readLine();
+            String[] cases = line1.split(r_return);
 
-            final RunConfiguration config = new RunConfiguration() {
-                public String getCommand() {
-                    return line;
-                }
+            for(String line : cases) {
+                line = line.trim();
+                final String returnline = line;
 
-                public String[] getArray() {
-                    return a;
-                }
+                final String[] a = line.split(Pattern.quote(" "));
+                final String p = a[0].toLowerCase();
 
-                public String getP() {
-                    return p;
-                }
-            };
+                final RunConfiguration config = new RunConfiguration() {
+                    public String getCommand() {
+                        return returnline;
+                    }
 
-            if(this.map.containsKey(p))
-                ((Module)this.map.get(p)).run(config);
+                    public String[] getArray() {
+                        return a;
+                    }
+
+                    public String getP() {
+                        return p;
+                    }
+                };
+
+                if(this.map.containsKey(p))
+                    ((Module)this.map.get(p)).run(config);
+            }
         }
     }
 
@@ -84,7 +98,17 @@ public class Console {
         return false;
     }
 
+    // reads one line from the console
     public String readLine() {
         return scanner.nextLine();
+    }
+
+    // rounds to the given decimal place
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        BigDecimal bd = new BigDecimal(value);
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 }
