@@ -68,8 +68,14 @@ public class Logger {
             case Status.CLEARLINE:
                 System.out.print("\033[2K");
                 return;
+            case Status.RESET:
+                System.out.print("\u001b[2J\u001b[H");
+                return;
             case Status.RAW:
                 System.out.println(e);
+                return;
+            case Status.RAWNL:
+                System.out.print(e);
                 return;
             case Status.TCHAR:
                 statustag = "" + tchar;

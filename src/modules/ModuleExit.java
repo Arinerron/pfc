@@ -9,7 +9,7 @@ public class ModuleExit extends Module {
 
     public ModuleExit() {
         super();
-        register("exit", "bye", "kys", "leave", "goodbye", "cya", "x");
+        register("exit", "bye", "kys", "leave", "goodbye", "cya", "x", "clr", "clear");
         Runtime.getRuntime().addShutdownHook(new Thread() {
             public void run() {
                 if(!me)
@@ -27,7 +27,11 @@ public class ModuleExit extends Module {
 
     @Override
     public void run(RunConfiguration config) {
-        me = true;
-        System.exit(0);
+        if(config.getP().equalsIgnoreCase("clear") || config.getP().equalsIgnoreCase("clr")) {
+            report(Status.RESET, null);
+        } else {
+            me = true;
+            System.exit(0);
+        }
     }
 }

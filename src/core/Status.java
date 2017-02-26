@@ -11,4 +11,6 @@ public class Status {
     public static final int RAW = 8;
     public static final int TCHAR = 9;
     public static final int HELP = 10;
+    public static final int RESET = 11;
+    public static final int RAWNL = 12;
 }

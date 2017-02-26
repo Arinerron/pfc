@@ -59,7 +59,7 @@ public class Console {
         Logger.report(Status.STATUS, "Welcome to pfc!");
 
         while(true) {
-            System.out.print(Color.GREEN + Color.BOLD + "pfc" + Color.WHITE + "-> " + Color.RESET + Color.CYAN);
+            Logger.report(Status.RAWNL, Color.GREEN + Color.BOLD + "pfc" + Color.WHITE + "-> " + Color.RESET + Color.CYAN);
 
             final String line1 = readLine();
             String[] cases = line1.split(r_return);
