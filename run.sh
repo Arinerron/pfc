@@ -5,7 +5,7 @@ set -e
 
 cd src
 
-javac -d ../bin -cp .:modules/*.java:modules/:modules/*:$(echo ../lib/*.jar | tr ' ' ':'):$(echo */*.java | tr ' ' ':') Main.java $(echo modules/*);
+javac -d ../bin -cp .:modules/*.java:modules/:modules/*:$(echo ../lib/*.jar | tr ' ' ':'):$(echo */*.java | tr ' ' ':') $(find . -type f);
 
 cd ../bin
 
