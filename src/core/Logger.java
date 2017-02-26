@@ -7,7 +7,7 @@ public class Logger {
     public static char tchar = '/';
     public static boolean liveupdate = false;
     public static String livestring = "";
-    public String oldstring = livestring;
+    public static String oldstring = livestring;
 
     public static void init() {
         new Timer().schedule(new TimerTask() {
@@ -31,7 +31,7 @@ public class Logger {
                 if(liveupdate) {
                     if(!oldstring.equals(livestring)) {
                         oldstring = livestring;
-                        report(STATUS.CLEARLINE, null);
+                        report(Status.CLEARLINE, null);
                     }
 
                     report(Status.TCHAR, livestring);
