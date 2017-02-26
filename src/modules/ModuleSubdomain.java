@@ -83,7 +83,7 @@ public class ModuleSubdomain extends Module {
             }
 
             if(pagecontent.contains("Our systems have detected unusual traffic")) {
-                report(Status.WARNING, "Google is blocking the traffic. Moving on...");
+                report(Status.WARNING, "Google is blocking traffic. Moving on...");
                 iterator = times;
                 break;
             } else if(pagecontent.contains("did not match any documents")) {
