@@ -110,7 +110,9 @@ public class ModuleGHTiming extends Module {
     // returns the content of a page at a url in a String
     public static String getContent(String page) throws Exception {
         URL url = new URL(page);
-        InputStream is = url.openStream();
+        URLConnection connection = url.openConnection();
+        connection.setUseCaches(false);
+        InputStream is = connection.getInputStream();
         int ptr = 0;
         StringBuffer buffer = new StringBuffer();
         while ((ptr = is.read()) != -1) {
