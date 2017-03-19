@@ -6,13 +6,14 @@ import java.util.*;
 import java.util.regex.*;
 
 public class Module {
+    private boolean disabled = false;
 
     public Module() {}
 
     // this function runs when the command is typed
     public void run(RunConfiguration config) {}
 
-    // registers a class under different commands
+    // registers a class under different aliases
     public void register(String ix, String... is) {
         for(String s : is)
             Console.map.put(s, this);
@@ -28,5 +29,15 @@ public class Module {
     // reports a user-friendly error message
     public void report(int status, Object e) {
         Logger.report(status, e);
+    }
+
+    // hides module from user
+    public void disable() {
+        this.disabled = true;
+    }
+
+    // is the module disabled
+    public boolean isDisabled() {
+        return this.disabled;
     }
 }

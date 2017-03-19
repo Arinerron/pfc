@@ -16,7 +16,10 @@ public class ModuleHelp extends Module {
             for(int i = 1; i < config.getArray().length; i++) {
                 String param = config.getArray()[i].toLowerCase();
                 if(Console.map.containsKey(param)) {
-                    ((Module)Console.map.get(param)).help();
+                    Module module = ((Module)Console.map.get(param));
+                    if(module.isDisabled())
+                        Logger.report(Status.WARNING, Color.BOLD + "Module is unstable!");
+                    module.help();
                 } else {
                     report(Status.ERROR, "Unknown module \"" + param + "\".");
                 }
@@ -28,7 +31,10 @@ public class ModuleHelp extends Module {
             Iterator it = Console.modules.entrySet().iterator();
             while (it.hasNext()) {
                 Map.Entry pair = (Map.Entry)it.next();
-                builder.append(pair.getKey() + (it.hasNext() ? ", " : ""));
+                if(!Console.map.get(pair.getKey()).isDisabled())
+                    builder.append(pair.getKey() + (it.hasNext() ? ", " : ""));
+                else
+                    builder.append(Color.RED + pair.getKey() + Color.GREEN + (it.hasNext() ? ", " : ""));
             }
 
             report(Status.HELP, builder.toString());

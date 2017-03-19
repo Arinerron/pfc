@@ -46,15 +46,18 @@ public class Logger {
             System.out.print("\033[2K");
 
         String statustag = "*";
+        String mcolor = "";
         switch(status) {
             case Status.INFO:
                 statustag = "+";
                 break;
             case Status.WARNING:
+                mcolor = Color.RED;
                 statustag = "-";
                 break;
             case Status.ERROR:
                 statustag = "!";
+                mcolor = Color.RED + Color.BOLD;
                 break;
             case Status.STATUS:
                 statustag = "*";
@@ -87,6 +90,6 @@ public class Logger {
 
         boolean color = (status == Status.HELP) || (status == Status.ERROR);
 
-        System.out.print(Color.GREEN + Color.BOLD + "[" + Color.BLUE + statustag + Color.GREEN + "] " + Color.RESET + (color ? Color.RED : "") + (e != null ? e.toString().replaceAll(Pattern.quote("{load}"), "[" + tchar + "]") : "Unknown error. Please report this.") + (status != Status.NOLINE && status != Status.TCHAR ? "\n" : "\r") + (color ? Color.RESET : ""));
+        System.out.print(Color.GREEN + Color.BOLD + "[" + Color.BLUE + statustag + Color.GREEN + "] " + Color.RESET + (color ? Color.RED : mcolor) + (e != null ? e.toString().replaceAll(Pattern.quote("{load}"), "[" + tchar + "]") : "Unknown error. Please report this.") + (status != Status.NOLINE && status != Status.TCHAR ? "\n" : "\r") + (color ? Color.RESET : ""));
     }
 }

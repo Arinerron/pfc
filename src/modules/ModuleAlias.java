@@ -31,10 +31,10 @@ public class ModuleAlias extends Module {
     }
 
     public void alias(String module) {
-        StringBuilder builder = new StringBuilder();
-        builder.append(Color.WHITE).append(module + ": " + Color.GREEN);
-
         Module m = Console.modules.get(module);
+
+        StringBuilder builder = new StringBuilder();
+        builder.append((m.isDisabled() ? Color.RED : Color.WHITE)).append(module + ": " + Color.GREEN);
 
         Iterator it = Console.map.entrySet().iterator();
         List<String> aliases = new ArrayList<>();

@@ -85,8 +85,12 @@ public class Console {
                     }
                 };
 
-                if(this.map.containsKey(p))
-                    ((Module)this.map.get(p)).run(config);
+                if(this.map.containsKey(p)) {
+                    Module module = ((Module)this.map.get(p));
+                    if(module.isDisabled())
+                        Logger.report(Status.WARNING, Color.BOLD + "Module is unstable!");
+                    module.run(config);
+                }
             }
         }
     }
