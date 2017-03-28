@@ -15,6 +15,8 @@ import org.apache.http.message.*;
 import org.apache.http.*;
 import org.apache.http.client.entity.*;
 import java.text.Collator;
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.config.CookieSpecs;
 
 public class ModuleSubdomain extends Module {
     public static final String USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36";
@@ -51,7 +53,10 @@ public class ModuleSubdomain extends Module {
     // returns a list of subdomains on a given domain
     public List<String> lookup(String domain) {
         List<String> subdomains = new ArrayList<>();
-        HttpClient client = HttpClients.createDefault();
+        HttpClient client = HttpClients.custom()
+        .setDefaultRequestConfig(RequestConfig.custom()
+            .setCookieSpec(CookieSpecs.STANDARD).build())
+        .build();
         boolean bruteforce = false;
 
         String r_query = Pattern.quote("{query}");

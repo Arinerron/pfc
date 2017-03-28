@@ -7,6 +7,7 @@ import java.util.regex.*;
 
 public class Module {
     private boolean disabled = false;
+    private boolean regular = false;
 
     public Module() {}
 
@@ -36,8 +37,18 @@ public class Module {
         this.disabled = true;
     }
 
+    // register module as default
+    public void regular() {
+        this.regular = true;
+    }
+
     // is the module disabled
     public boolean isDisabled() {
         return this.disabled;
+    }
+
+    // is the module regular
+    public boolean isRegular() {
+        return this.regular;
     }
 }

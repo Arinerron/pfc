@@ -7,6 +7,7 @@ import java.util.*;
 public class ModuleAlias extends Module {
     public ModuleAlias() {
         super();
+        regular();
         register("alias", "aliases", "al", "nick", "aliass", "alia");
     }
 

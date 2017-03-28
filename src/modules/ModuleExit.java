@@ -9,6 +9,7 @@ public class ModuleExit extends Module {
 
     public ModuleExit() {
         super();
+        regular();
         register("exit", "bye", "kys", "leave", "goodbye", "cya", "x", "clr", "clear");
         Runtime.getRuntime().addShutdownHook(new Thread() {
             public void run() {

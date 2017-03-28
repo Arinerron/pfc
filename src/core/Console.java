@@ -48,15 +48,24 @@ public class Console {
                 try {
                     Class.forName("modules." + classname).newInstance();
                 } catch(Exception e) {
-                    System.out.println("[-] Failed to load module " + classname);
-                    e.printStackTrace();
+                    Logger.report(Status.WARNING, "Failed to load module \"" + classname.toLowerCase() + "\"");
+                    Logger.report(Status.ERROR, e.toString());
                 }
 
         long after = System.currentTimeMillis();
-        String r_return = Pattern.quote("&&");
 
         Logger.report(Status.STATUS, "Loaded [" + modules.size() + "] modules in [" + round((double)(after - before) / 1000, 2) + "] seconds...");
         Logger.report(Status.STATUS, "Welcome to pfc!");
+
+        new Thread(new Runnable() {
+            public void run() {
+                Console.this.run();
+            }
+        }).start();
+    }
+
+    public void run() {
+        String r_return = Pattern.quote("&&");
 
         while(true) {
             Logger.report(Status.RAWNL, Color.GREEN + Color.BOLD + "pfc" + Color.WHITE + "-> " + Color.RESET + Color.CYAN);
@@ -90,6 +99,12 @@ public class Console {
                     if(module.isDisabled())
                         Logger.report(Status.WARNING, Color.BOLD + "Module is unstable!");
                     module.run(config);
+                } else if("clear".equalsIgnoreCase(p)) {
+                    System.out.print("\033[H\033[2J");
+                    System.out.flush();
+                } else {
+                    Logger.report(Status.WARNING, "Module does not exist or is not loaded in");
+                    ((Module)this.map.get("help")).run(config);
                 }
             }
         }
