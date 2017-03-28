@@ -72,7 +72,8 @@ public class Logger {
                 System.out.print("\033[2K");
                 return;
             case Status.RESET:
-                System.out.print("\u001b[2J\u001b[H");
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
                 return;
             case Status.RAW:
                 System.out.println(e);

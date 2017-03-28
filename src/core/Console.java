@@ -99,9 +99,6 @@ public class Console {
                     if(module.isDisabled())
                         Logger.report(Status.WARNING, Color.BOLD + "Module is unstable!");
                     module.run(config);
-                } else if("clear".equalsIgnoreCase(p)) {
-                    System.out.print("\033[H\033[2J");
-                    System.out.flush();
                 } else {
                     Logger.report(Status.WARNING, "Module does not exist or is not loaded in");
                     ((Module)this.map.get("help")).run(config);
