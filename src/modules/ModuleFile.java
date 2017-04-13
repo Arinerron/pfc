@@ -17,7 +17,7 @@ public class ModuleFile extends Module {
         if(config != null && config.getArray().length != 1) {
             for(int i = 1; i < config.getArray().length; i++) {
                 File file = new File(config.getArray()[i]);
-                if(file.exists() && file.isFile()) {
+                if(file.exists()) {
                     System.out.println(generateReport(file));
                 } else {
                     report(Status.ERROR, "File \"" + file.getAbsolutePath() + "\" does not exist.");
@@ -32,11 +32,39 @@ public class ModuleFile extends Module {
     public String generateReport(File file) {
         StringBuilder builder = new StringBuilder();
 
-        builder.append("Report for [" + file.getName() + "]:\n");
-        String[] data = getDataByBytes(readBytes(file));
-        builder.append("Bytes: " + data[0] + " & ext: " + data[1]);
+        if(file.isFile()) {
+            builder.append("Report for [" + file.getName() + "]:\n");
+            String[] data = getDataByBytes(readBytes(file));
+            builder.append("Type | " + data[0] + " (" + data[1].toLowerCase() + ")\n");
+            builder.append("Size | " + formatFilesize(file.length()) + "\n");
+        } else {
+            builder.append("Files in [" + file.getAbsolutePath() + "]:\n");
+            for(File f : file.listFiles())
+                if(f.isFile())
+                    builder.append(Color.RED + f.getName() + "\n");
+                else
+                    builder.append(Color.BLUE + f.getName() + "\n");
+        }
 
         return builder.toString();
+    }
+
+    /* Convert the filesize to user-friendly string */
+    public String formatFilesize(double size) {
+        double kilobytes = (size / 1024);
+		double megabytes = (kilobytes / 1024);
+		double gigabytes = (megabytes / 1024);
+		double terabytes = (gigabytes / 1024);
+
+        if(terabytes >= 1)
+            return size + " TB";
+        else if(gigabytes >= 1)
+            return size + " GB";
+        else if(megabytes >= 1)
+            return size + " MB";
+        else if(kilobytes >= 1)
+            return size + " KB";
+        return size + " B";
     }
 
     /* Converts an array of bytes to hex*/
