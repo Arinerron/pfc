@@ -9,10 +9,16 @@ sh run.sh
 ```
 
 # Modules
-## help
+## helphelp, exit, alias, file, pfind, subdomains, ghtiming
 If a module is specified, the help menu will be displayed for it. If not, a list of all of the modules with be displayed.
 ```
 syntax: help [module]
+```
+
+## exit
+This module is simply for exiting the console.
+```
+syntax: exit
 ```
 
 ## alias
@@ -21,10 +27,10 @@ Shows all of the aliases for either the specified modules, or, if no modules are
 syntax: alias [module]
 ```
 
-## exit
-This module is simply for exiting the console.
+## file
+Reads file signature to discover filetype, or lists files in directory
 ```
-syntax: exit
+syntax: file <paths>
 ```
 
 ## pfind
@@ -37,4 +43,10 @@ syntax: pfind <username>
 Scans for subdomains of a given domain
 ```
 syntax: subdom <domain>
+```
+
+## ghtiming
+Performs a timing attack on GitHub to discover if a hidden repository exists
+```
+syntax: ghtiming <url>
 ```
