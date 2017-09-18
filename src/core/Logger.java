@@ -52,11 +52,11 @@ public class Logger {
                 statustag = "+";
                 break;
             case Status.WARNING:
-                mcolor = Color.RED;
-                statustag = "-";
+                mcolor = Color.YELLOW;
+                statustag = "!";
                 break;
             case Status.ERROR:
-                statustag = "!";
+                statustag = "-";
                 mcolor = Color.RED + Color.BOLD;
                 break;
             case Status.STATUS:
