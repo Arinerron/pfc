@@ -19,7 +19,8 @@ pfc will be installed to `$HOME/.pfc`.
 **Troubleshooting**
 1. `pfc: command not found`? The reason is probably because for whatever reason, `$HOME/.profile` is not executing. Try adding the line `source .profile` to your `.bashrc`/`.zshrc` to fix this, and reset the session.
 2. Still not working? Try doing `cd ~/.pfc`, then executing `sh run.sh`. Does that work? If so, then the problem is most likely that your `PATH` variable is still not being set. Make sure to add `/home/<user>/.pfc` to your `PATH`.
-3. If you have _any_ other problems, feel free to open a new issue using GitHub's issue tracker.
+3. If for any reason you need to reinstall it, just re-run the `curl` script above. To uninstall, just `rm /home/<user>/.pfc/`.
+4. If you have _any_ other problems, feel free to open a new issue using GitHub's issue tracker.
 
 ## Manual installation
 ```
