@@ -1,12 +1,11 @@
 #include <stdlib.h>
+#include <string.h>
 
 int main() {
-    char cwd[1024];
-    if (getcwd(cwd, sizeof(cwd)) != NULL)
-        fprintf(stdout, "Current working dir: %s\n", cwd);
-    else
-        perror("getcwd() error");
-    return 0;
-    system("/bin/sh run.sh");
+    char cwd[2024];
+    strcat(cwd, "/bin/sh ");
+    getcwd(cwd, sizeof(cwd));
+    strcat(cwd, "/run.sh");
+    system(cwd);
     return 0;
 }
