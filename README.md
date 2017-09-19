@@ -10,7 +10,7 @@ sh run.sh
 
 To set up a function so that you can just call `pfc` as a command, execute:
 ```
-echo "pfc() {cd ~/github/pfc && command sh run.sh \"$@\"}" >> ~/.profile
+echo "pfc() {cd `pwd` && command sh run.sh \"$@\"}" >> ~/.profile
 ```
 Then, `source ~/.profile` to "reset" the session
 
