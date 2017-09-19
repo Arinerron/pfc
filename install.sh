@@ -38,7 +38,6 @@ git pull -q origin master > /dev/null;
 
 # compile code to run pfc
 echo "Compiling pfc...";
-gcc -o pfc ./pfc.c;
 chmod +x ./pfc;
 sh compile.sh;
 
