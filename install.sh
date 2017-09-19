@@ -6,7 +6,6 @@ set -e;
 command -v git >/dev/null 2>&1 || { echo "\033[0;31mError: pfc is dependant on the package \`git\`.\033[0m" >&2; exit 1; }
 command -v java >/dev/null 2>&1 || { echo "\033[0;31mError: pfc is dependant on the package \`java\`.\033[0m" >&2; exit 1; }
 command -v javac >/dev/null 2>&1 || { echo "\033[0;31mError: pfc is dependant on the package \`javac\`.\033[0m" >&2; exit 1; }
-command -v gcc >/dev/null 2>&1 || { echo "\033[0;31mError: pfc is dependant on the package \`gcc\`.\033[0m" >&2; exit 1; }
 
 location="$HOME/.pfc";
 

@@ -24,18 +24,34 @@ pfc will be installed to `$HOME/.pfc`.
 
 ## Manual installation
 ```
-git clone http://git.arinerron.com/pfc
+# first make sure you have the following packages installed:
+# git, java, javac
+
+# clone the repository
+git clone http://github.com/Arinerron/pfc.git
+
+# enter the repository folder
 cd pfc
-sh run.sh
+
+# give files execute permissions
+chmod +x run.sh compile.sh pfc
+
+# compile the files (or recompile the files)
+sh compile.sh
+
+# set up PATH
+echo "export PATH=\$PATH:`pwd`/" >> $HOME/.profile;
+export PATH=$PATH:`pwd`/
+
+# run the program
+pfc
+
+# and later, if you feel like getting the latest update, run the following
+git pull
+sh compile.sh
 ```
 
-To set up a function so that you can just call `pfc` as a command, execute:
-```
-echo "pfc() {cd `pwd` && command sh run.sh \"$@\"}" >> ~/.profile
-```
-Then, `source ~/.profile` to "reset" the session
-
-You can change `.profile` to `.bashrc` or `.zshrc` or whatever as needed.
+You may need to add `source ~/.profile` to `.bashrc` or `.zshrc` or whatever if it says `pfc: command not found`.
 
 # Modules
 ## helphelp, exit, alias, file, pfind, subdomains, ghtiming
