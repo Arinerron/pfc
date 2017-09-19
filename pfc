@@ -2,4 +2,5 @@
 
 set -e;
 
-sh `pwd`/run.sh "$@"
+cd `dirname "$0"`
+sh run.sh "$@"
