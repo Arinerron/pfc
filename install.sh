@@ -39,6 +39,7 @@ git pull -q origin master > /dev/null;
 # compile code to run pfc
 echo "Compiling pfc...";
 chmod +x ./pfc;
+chmod +x ./compile.sh
 sh compile.sh;
 
 # add working directory to path

@@ -2,6 +2,26 @@
 pfc is a cli-based modular toolkit for pentesting and reconnaissance.
 
 # Installation
+## Automatic pfc installation
+```
+# simply execute the below string
+curl https://gist.githubusercontent.com/Arinerron/fdab66594c87ee105a0a4ed5ba734343/raw/73a8311e60ca08d66ca2deda3ca3777907364474/install.sh | sh
+
+# don't like blindly downloading and running scripts? neither do I! feel free to download and view the source first
+curl https://gist.githubusercontent.com/Arinerron/fdab66594c87ee105a0a4ed5ba734343/raw/73a8311e60ca08d66ca2deda3ca3777907364474/install.sh > install.sh
+less install.sh
+# ...and once you feel comfortable
+sh install.sh
+```
+
+pfc will be installed to `$HOME/.pfc`.
+
+**Troubleshooting**
+1. `pfc: command not found`? The reason is probably because for whatever reason, `$HOME/.profile` is not executing. Try adding the line `source .profile` to your `.bashrc`/`.zshrc` to fix this, and reset the session.
+2. Still not working? Try doing `cd ~/.pfc`, then executing `sh run.sh`. Does that work? If so, then the problem is most likely that your `PATH` variable is still not being set. Make sure to add `/home/<user>/.pfc` to your `PATH`.
+3. If you have _any_ other problems, feel free to open a new issue using GitHub's issue tracker.
+
+## Manual installation
 ```
 git clone http://git.arinerron.com/pfc
 cd pfc
