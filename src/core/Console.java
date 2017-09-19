@@ -141,7 +141,12 @@ public class Console {
                     Module module = ((Module)this.map.get(p));
                     if(module.isDisabled())
                         Logger.report(Status.WARNING, Color.BOLD + "Module is unstable!");
-                    module.run(config);
+                    try {
+                        module.run(config);
+                    } catch(Exception e) {
+                        Logger.report(Status.WARNING, "Encountered an error while parsing command");
+                        Logger.report(Status.ERROR, e.toString());
+                    }
                 } else {
                     Logger.report(Status.WARNING, "Module does not exist or is not loaded in");
                     ((Module)this.map.get("help")).run(config);

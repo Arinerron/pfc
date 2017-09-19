@@ -30,7 +30,7 @@ public class ModuleExit extends Module {
 
     @Override
     public void run(RunConfiguration config) {
-        if(config.getP().equalsIgnoreCase("clear") || config.getP().equalsIgnoreCase("clr")) {
+        if(Console.is(config.getP(), "clear", "clr")) {
             report(Status.RESET, null);
         } else {
             me = true;
