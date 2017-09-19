@@ -13,7 +13,7 @@ location="$HOME/.pfc";
 echo -n "\033[0;32m"; # color :)
 
 # check if pfc is already installed
-if [ -d "$DIRECTORY" ]; then
+if [ -d "$location" ]; then
     echo -n "\033[0;31mThe pfc working folder already exists. Reinstall pfc (y/n)? \033[0;32m";
     read answer;
     if echo "$answer" | grep -iq "^y" ; then
@@ -34,7 +34,7 @@ cd $location;
 echo "Downloading files...";
 git init . > /dev/null;
 git remote add origin https://github.com/Arinerron/pfc > /dev/null;
-git pull origin master > /dev/null;
+git pull -q origin master > /dev/null;
 
 # compile code to run pfc
 echo "Compiling pfc...";
