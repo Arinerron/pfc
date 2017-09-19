@@ -43,6 +43,7 @@ sh compile.sh;
 
 # add working directory to path
 echo "export PATH=\$PATH:$location/" >> $HOME/.profile;
+export PATH=$PATH:$location/
 
 sleep 1;
 echo "Installation complete.\033[0m";
