@@ -8,6 +8,8 @@ import java.io.*;
 import java.math.*;
 
 public class Console {
+    public static boolean EXIT_MESSAGE = true;
+
     public Scanner scanner = null;
     public static HashMap<String, Module> map = new HashMap<>();
     public static HashMap<String, Module> modules = new HashMap<>();
@@ -18,7 +20,8 @@ public class Console {
         long before = System.currentTimeMillis();
         //print banner
         Logger.init();
-        System.out.println(banner);
+        if(args.length == 0)
+            System.out.println(banner);
 
         // init scanner
         try {
@@ -54,14 +57,54 @@ public class Console {
 
         long after = System.currentTimeMillis();
 
-        Logger.report(Status.STATUS, "Loaded [" + modules.size() + "] modules in [" + round((double)(after - before) / 1000, 2) + "] seconds...");
-        Logger.report(Status.STATUS, "Welcome to pfc!");
+        if(args.length == 0) {
+            Logger.report(Status.STATUS, "Loaded [" + modules.size() + "] modules in [" + round((double)(after - before) / 1000, 2) + "] seconds...");
+            Logger.report(Status.STATUS, "Welcome to pfc!");
+        }
 
-        new Thread(new Runnable() {
-            public void run() {
-                Console.this.run();
+        if(args.length != 0) {
+            StringBuilder b = new StringBuilder();
+            for(String s : args)
+                b.append(s + " ");
+            String command = b.toString().trim();
+            final String returnline = command;
+            final String p = args[0].toLowerCase();
+
+            Logger.report(Status.RAWNL, Color.GREEN + Color.BOLD + "pfc" + Color.WHITE + "-> " + Color.RESET + Color.CYAN + command + "\n");
+
+            final RunConfiguration config = new RunConfiguration() {
+                public String getCommand() {
+                    return returnline;
+                }
+
+                public String[] getArray() {
+                    return args;
+                }
+
+                public String getP() {
+                    return p;
+                }
+            };
+
+            if(this.map.containsKey(p)) {
+                Module module = ((Module)this.map.get(p));
+                if(module.isDisabled())
+                    Logger.report(Status.WARNING, Color.BOLD + "Module is unstable!");
+                module.run(config);
+            } else {
+                Logger.report(Status.WARNING, "Module does not exist or is not loaded in");
+                ((Module)this.map.get("help")).run(config);
             }
-        }).start();
+
+            Console.EXIT_MESSAGE = false;
+            System.exit(0);
+        } else {
+            new Thread(new Runnable() {
+                public void run() {
+                    Console.this.run();
+                }
+            }).start();
+        }
     }
 
     public void run() {
@@ -107,7 +150,7 @@ public class Console {
         }
     }
 
-    public boolean is(String i, String... is) {
+    public static boolean is(String i, String... is) {
         for(String s : is)
             if(s.equals(i))
                 return true;

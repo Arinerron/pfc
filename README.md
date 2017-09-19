@@ -8,6 +8,14 @@ cd pfc
 sh run.sh
 ```
 
+To set up a function so that you can just call `pfc` as a command, execute:
+```
+echo "pfc() {cd ~/github/pfc && command sh run.sh \"$@\"}" >> ~/.profile
+```
+Then, `source ~/.profile` to "reset" the session
+
+You can change `.profile` to `.bashrc` or `.zshrc` or whatever as needed.
+
 # Modules
 ## helphelp, exit, alias, file, pfind, subdomains, ghtiming
 If a module is specified, the help menu will be displayed for it. If not, a list of all of the modules with be displayed.

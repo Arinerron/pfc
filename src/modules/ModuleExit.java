@@ -13,9 +13,11 @@ public class ModuleExit extends Module {
         register("exit", "bye", "kys", "leave", "goodbye", "cya", "x", "clr", "clear");
         Runtime.getRuntime().addShutdownHook(new Thread() {
             public void run() {
-                if(!me)
-                    report(Status.EMPTY, null);
-                report(Status.INFO, Color.GREEN + "bye!");
+                if(Console.EXIT_MESSAGE) {
+                    if(!me)
+                        report(Status.EMPTY, null);
+                    report(Status.INFO, Color.GREEN + "bye!");
+                }
             }
         });
     }
