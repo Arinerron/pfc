@@ -33,6 +33,7 @@ cd $location;
 echo "Downloading files...";
 git init . > /dev/null;
 git remote add origin https://github.com/Arinerron/pfc > /dev/null;
+git branch --set-upstream-to=origin/master master;
 git pull -q origin master > /dev/null;
 
 # compile code to run pfc
