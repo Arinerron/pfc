@@ -123,7 +123,7 @@ public class ModuleSubdomain extends Module {
             try {
                 pagecontent = httpGET(client, pageurl);
             } catch(Exception e) {
-                report(Status.ERROR, e);
+                // report(Status.ERROR, e);
                 iterator = times;
                 break;
             }
