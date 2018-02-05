@@ -1,6 +1,8 @@
 # About
 pfc is a cli-based modular toolkit for pentesting and reconnaissance.
 
+**This project is still under development, and many features have not been implemented yet.**
+
 # Installation
 ## Automatic pfc installation
 ```
@@ -54,7 +56,7 @@ sh compile.sh
 You may need to add `source ~/.profile` to `.bashrc` or `.zshrc` or whatever if it says `pfc: command not found`.
 
 # Modules
-## helphelp, exit, alias, file, pfind, subdomains, ghtiming
+## help
 If a module is specified, the help menu will be displayed for it. If not, a list of all of the modules with be displayed.
 ```
 syntax: help [module]
