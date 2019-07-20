@@ -1,0 +1,26 @@
+name: pfc
+version: 1.0
+release: 1
+summary: a cli-based modular toolkit for pentesting and reconnaissance
+website: https://github.com/Arinerron/pfc
+contact: pfc@aaronesau.com
+maintainer: Aaron Esau
+
+sources:
+- git: https://github.com/Arinerron/pfc.git
+  branch: master
+
+dependencies:
+- pkgbuild: jdk8-openjdk
+- pkgbuild: jre8-openjdk
+
+movements:
+- '.': /usr/share/pfc
+  chown: root:root
+  chmod: 755
+- pfc: /usr/bin/
+  chown: root:root
+  chmod: 755
+
+scripts:
+- build: compile.sh
