@@ -4,6 +4,12 @@ pfc is a cli-based modular toolkit for pentesting and reconnaissance.
 **This project is still under development, and many features have not been implemented yet.**
 
 # Installation
+## Arch User Repository
+We're in the AUR at https://aur.archlinux.org/packages/pfc-git/
+```
+trizen -S pfc-git
+```
+
 ## Automatic pfc installation
 ```
 # simply execute the below string
