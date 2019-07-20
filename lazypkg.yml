@@ -1,4 +1,4 @@
-name: pfc
+name: pfc-git
 version: 1.0
 release: 1
 summary: a cli-based modular toolkit for pentesting and reconnaissance
